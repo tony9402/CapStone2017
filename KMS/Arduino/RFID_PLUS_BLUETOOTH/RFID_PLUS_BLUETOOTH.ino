@@ -2,12 +2,12 @@
 #include<MFRC522.h>
 #include<SPI.h>
 
-#define Rx 2
-#define Tx 3
+#define Rx 3
+#define Tx 2
 #define RST_PIN 9
 #define SS_PIN 10
 
-SoftwareSerial BT(Rx,Tx);
+SoftwareSerial BT(Tx,Rx);
 MFRC522 mfrc(SS_PIN,RST_PIN);
 
 unsigned int _4ByteNum = 0;
@@ -37,4 +37,5 @@ void loop()
     }
     delay(3000);
 }
+
 
