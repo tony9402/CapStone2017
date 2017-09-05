@@ -1,5 +1,5 @@
-  int echo_pin=11;
-  int trig_pin=13;
+  int echo_pin=3;
+  int trig_pin=5;
 void setup() {
 
   Serial.begin(9600);
