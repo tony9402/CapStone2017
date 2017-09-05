@@ -1,3 +1,9 @@
+int left_ccw=7;
+int left_ena=11;
+int right_ccw=9;
+int right_ena=13;
+int echo_pin=3;
+int trig_pin=5;
 
 void setup() {
   pinMode(7,OUTPUT);
