@@ -33,10 +33,11 @@ digitalWrite(13,LOW);
 digitalWrite(7,HIGH);
 digitalWrite(9,LOW);
 delay(1000);
-//오른쪽
+//우회전
 digitalWrite(11,LOW);
 digitalWrite(13,LOW);
 digitalWrite(7,LOW);
 digitalWrite(9,HIGH);
 delay(1000);
+
 }
