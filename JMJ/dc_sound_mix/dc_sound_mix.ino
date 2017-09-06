@@ -10,7 +10,7 @@ int trigI_pin=2;
 int echoR_pin=3;
 int trigR_pin=1;
 void straight();
-void turLeft();
+void turnLeft();
 void turnRight();
 
 
@@ -69,7 +69,7 @@ void straight(){
   digitalWrite(Lturn,LOW);
   digitalWrite(Rturn,LOW);
 }
-void turLeft(){
+void turnLeft(){
   digitalWrite(Ldc,LOW);
   digitalWrite(Rdc,LOW);
   digitalWrite(Lturn,HIGH);

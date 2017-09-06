@@ -21,9 +21,9 @@ digitalWrite(13,LOW);
 digitalWrite(7,LOW);
 digitalWrite(9,LOW);
 delay(1000);
-//뒤
-digitalWrite(11,LOW);
-digitalWrite(13,LOW);
+//스탑
+digitalWrite(11,HIGH);
+digitalWrite(13,HIGH);
 digitalWrite(7,HIGH);
 digitalWrite(9,HIGH);
 delay(1000);
