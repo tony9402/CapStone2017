@@ -6,9 +6,7 @@ int Rturn=9;
 int echoL_pin=6;
 int trigL_pin=4;
 int echoI_pin=5;
-int trigI_pin=2;
 int echoR_pin=3;
-int trigR_pin=1;
 void straight();
 void turnLeft();
 void turnRight();
@@ -24,9 +22,9 @@ void setup() {
   pinMode(Ldc,OUTPUT);
   pinMode(Rdc,OUTPUT);
   pinMode(echoI_pin,INPUT);
-  pinMode(trigI_pin,OUTPUT);
+
   pinMode(echoR_pin,INPUT);
-  pinMode(trigR_pin,OUTPUT);
+
   pinMode(echoL_pin,INPUT);
   pinMode(trigL_pin,OUTPUT);
 
@@ -35,15 +33,11 @@ void setup() {
 void loop() {
 
 
-  digitalWrite(trigI_pin,HIGH);
   digitalWrite(trigL_pin,HIGH);
-  digitalWrite(trigR_pin,HIGH);
 
   delay(10);
   
-  digitalWrite(trigI_pin,LOW);
   digitalWrite(trigL_pin,LOW);
-  digitalWrite(trigR_pin,LOW);
   
 durationI=pulseIn(echoI_pin,HIGH);
 distanceI=(float(durationI/2)/24);
@@ -93,16 +87,19 @@ void turnRight(){
 }
 void caseFTR(){
   turnRight();
+  delay(300);
   straight();
   while(1){
     if(distanceI<=10 && distanceL>=10 && distanceR>=10){
       turnLeft();
+      delay(300);
       straight();
       delay(1000);
       caseFTL();
     }
     else if(distanceI<=10 && distanceL<=10){
       turnRight();
+      delay(300);
       straight();
       delay(1000);
       caseFTR();
@@ -114,16 +111,19 @@ void caseFTR(){
 }
 void caseFTL(){
   turnLeft();
+  delay(300);
   straight();
   while(1){
     if(distanceI<=10 && distanceL>=10 && distanceR>=10){
       turnRight();
+      delay(300);
       straight();
       delay(1000);
       caseFTR();
     }
     else if(distanceI<=10 && distanceR<=10){
       turnLeft();
+      delay(300);
       straight();
       delay(1000);
       caseFTL();
