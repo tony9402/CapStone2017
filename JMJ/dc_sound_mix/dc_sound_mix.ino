@@ -20,8 +20,12 @@ void setup() {
   pinMode(Rturn,OUTPUT);
   pinMode(Ldc,OUTPUT);
   pinMode(Rdc,OUTPUT);
-  pinMode(echo_pin,INPUT);
-  pinMode(trig_pin,OUTPUT);
+  pinMode(echoI_pin,INPUT);
+  pinMode(trigI_pin,OUTPUT);
+  pinMode(echoR_pin,INPUT);
+  pinMode(trigR_pin,OUTPUT);
+  pinMode(echoL_pin,INPUT);
+  pinMode(trigL_pin,OUTPUT);
 }
 
 void loop() {
