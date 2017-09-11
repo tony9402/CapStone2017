@@ -12,6 +12,7 @@ void turnLeft();
 void turnRight();
 void caseFTR();
 void caseFTL();
+void disCheck();
 float durationI, distanceI;
 float durationL, distanceL;
 float durationR, distanceR;
@@ -22,17 +23,13 @@ void setup() {
   pinMode(Ldc,OUTPUT);
   pinMode(Rdc,OUTPUT);
   pinMode(echoI_pin,INPUT);
-
   pinMode(echoR_pin,INPUT);
-
   pinMode(echoL_pin,INPUT);
   pinMode(trigL_pin,OUTPUT);
 
 }
 
 void loop() {
-
-
   digitalWrite(trigL_pin,HIGH);
 
   delay(10);
@@ -51,7 +48,7 @@ distanceR=(float(durationR/2)/24);
 straight();
 if (distanceI<=10 && distanceL<=10){
   turnRight();
-  straight;
+  straight();
   if(distanceI<=10 && distanceL<=10){
     turnRight();
   }
@@ -60,6 +57,17 @@ if (distanceI<=10 && distanceL<=10){
     caseFTR();
   }
   
+}
+else if(distanceI<=10 && distanceR<=10){
+  turnLeft();
+  straight();
+  if(distanceI<=10 && distanceR<=10){
+    turnLeft();
+  }
+  else{
+    delay(1000);
+    caseFTL();
+  }
 }
 
 
@@ -105,7 +113,7 @@ void caseFTR(){
       caseFTR();
     }
     else{
-      continue;
+      break;
     }
   }
 }
@@ -129,7 +137,7 @@ void caseFTL(){
       caseFTL();
     }
     else{
-      continue;
+      break;
     }
   }
 }
