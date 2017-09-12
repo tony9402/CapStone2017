@@ -2,19 +2,24 @@ int Ldc=11;
 int Lturn=7;
 int Rdc=13;
 int Rturn=9;
+
 void setup() {
   // put your setup code here, to run once:
   pinMode(Lturn,OUTPUT);
   pinMode(Rturn,OUTPUT);
   pinMode(Ldc,OUTPUT);
+  
   pinMode(Rdc,OUTPUT);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-straight();
 turnRight();
-turnLeft();
+Stop();
+}
+
+
+void Stop(){
   digitalWrite(Ldc,HIGH);
   digitalWrite(Rdc,HIGH);
   delay(1000);
