@@ -13,6 +13,7 @@ void turnRight();
 void caseFTR();
 void caseFTL();
 void disCheck();
+void Stop();
 float durationI, distanceI;
 float durationL, distanceL;
 float durationR, distanceR;
@@ -30,47 +31,53 @@ void setup() {
 }
 
 void loop() {
-  digitalWrite(trigL_pin,HIGH);
-
-  delay(10);
-  
-  digitalWrite(trigL_pin,LOW);
-  
-durationI=pulseIn(echoI_pin,HIGH);
-distanceI=(float(durationI/2)/24);
-
-durationL=pulseIn(echoL_pin,HIGH);
-distanceL=(float(durationL/2)/24);
-
-durationR=pulseIn(echoR_pin,HIGH);
-distanceR=(float(durationR/2)/24);
-
-straight();
-if (distanceI<=10 && distanceL<=10){
-  turnRight();
-  straight();
-  if(distanceI<=10 && distanceL<=10){
-    turnRight();
+  while(1){
+    disCheck();
+    straight();
+    
+    if (distanceI<=10 && distanceL<=10){
+      Stop();
+      turnRight();
+      disCheck();
+      straight();
+      
+      if(distanceI<=10 && distanceL<=10){
+        Stop();
+        turnRight();
+        continue;
+      }
+      else{
+        delay(1000);
+        caseFTR();
+      }
+    }
+    
+    else if(distanceI<=10 && distanceR<=10){
+      turnLeft();
+      disCheck();
+      straight();
+      
+      if(distanceI<=10 && distanceR<=10){
+        Stop();
+        turnLeft();
+        continue;
+      }
+      
+      else{
+        delay(1000);
+        caseFTL();
+      }
+    }
+    else{
+      continue;
+    }
   }
-  else{
-    delay(1000);
-    caseFTR();
-  }
-  
 }
-else if(distanceI<=10 && distanceR<=10){
-  turnLeft();
-  straight();
-  if(distanceI<=10 && distanceR<=10){
-    turnLeft();
-  }
-  else{
-    delay(1000);
-    caseFTL();
-  }
-}
 
-
+void Stop(){
+  digitalWrite(Ldc,HIGH);
+  digitalWrite(Rdc,HIGH);
+  delay(1000);
 }
 
 void straight(){
@@ -85,6 +92,7 @@ void turnLeft(){
   digitalWrite(Lturn,HIGH);
   digitalWrite(Rturn,LOW);
   delay(1000);
+  Stop();
 }
 void turnRight(){
   digitalWrite(Ldc,LOW);
@@ -92,28 +100,31 @@ void turnRight(){
   digitalWrite(Lturn,LOW);
   digitalWrite(Rturn,HIGH);
   delay(1000);
+  Stop();
 }
 void caseFTR(){
   turnRight();
   delay(300);
   straight();
   while(1){
+    disCheck();
+    
     if(distanceI<=10 && distanceL>=10 && distanceR>=10){
+      Stop();
       turnLeft();
       delay(300);
       straight();
       delay(1000);
       caseFTL();
     }
+    
     else if(distanceI<=10 && distanceL<=10){
+      Stop();
       turnRight();
       delay(300);
       straight();
       delay(1000);
       caseFTR();
-    }
-    else{
-      break;
     }
   }
 }
@@ -122,24 +133,43 @@ void caseFTL(){
   delay(300);
   straight();
   while(1){
+    disCheck();
+    
     if(distanceI<=10 && distanceL>=10 && distanceR>=10){
+      Stop();
       turnRight();
       delay(300);
       straight();
       delay(1000);
       caseFTR();
     }
+    
     else if(distanceI<=10 && distanceR<=10){
+      Stop();
       turnLeft();
       delay(300);
       straight();
       delay(1000);
       caseFTL();
     }
-    else{
-      break;
-    }
   }
+}
+
+void disCheck(){
+  digitalWrite(trigL_pin,HIGH);
+
+  delay(10);
+  
+  digitalWrite(trigL_pin,LOW);
+  
+durationI=pulseIn(echoI_pin,HIGH);
+distanceI=(float(durationI/2)/24);
+
+durationL=pulseIn(echoL_pin,HIGH);
+distanceL=(float(durationL/2)/24);
+
+durationR=pulseIn(echoR_pin,HIGH);
+distanceR=(float(durationR/2)/24);
 }
 
 
