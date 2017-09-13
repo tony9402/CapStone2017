@@ -91,7 +91,12 @@ void turnLeft(){
   digitalWrite(Rdc,LOW);
   digitalWrite(Lturn,HIGH);
   digitalWrite(Rturn,LOW);
-  delay(1000);
+  delay(350);
+  digitalWrite(Ldc,LOW);
+  digitalWrite(Rdc,LOW);
+  digitalWrite(Lturn,LOW);
+  digitalWrite(Rturn,HIGH);
+  delay(50);
   Stop();
 }
 void turnRight(){
@@ -99,7 +104,12 @@ void turnRight(){
   digitalWrite(Rdc,LOW);
   digitalWrite(Lturn,LOW);
   digitalWrite(Rturn,HIGH);
-  delay(1000);
+  delay(350);
+  digitalWrite(Ldc,LOW);
+  digitalWrite(Rdc,LOW);
+  digitalWrite(Lturn,HIGH);
+  digitalWrite(Rturn,LOW);
+  delay(50);
   Stop();
 }
 void caseFTR(){
