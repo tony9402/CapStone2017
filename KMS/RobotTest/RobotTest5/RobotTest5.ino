@@ -1,3 +1,4 @@
+//
 #define Ldc 11
 #define Lturn 7
 #define Rdc 10
@@ -6,6 +7,8 @@
 #define echoI_pin 2
 #define echoR_pin 3
 #define echoL_pin 6
+#define LEFT 1
+#define RIGHT 2
    
 void straight();
 void turnLeft();
@@ -14,6 +17,10 @@ void disCheck();
 void Stop();
 
 float distanceI, distanceR, distanceL;
+char turnCheck = NULL;
+char escapeVersion = NULL;
+bool versionCheck = false;
+bool escape = false;
 
 void setup() {
   pinMode(Lturn,OUTPUT);
@@ -29,12 +36,71 @@ void setup() {
 
 void loop() {
   disCheck();
-  if(distanceI <= 20.0 && distanceL <= 20.0 && !(distanceR <= 20.0)){
-    turnRight();
-  }else if(distanceI <= 20.0 && distanceR <= 20.0 && !(distanceL <= 20)){
-    turnLeft();
-  }else if(!(distanceI <= 20.0)){
-    straight();
+  if(escape == false){
+    if(versionCheck != true){
+      if(distanceL > 20.0 && distanceR > 20.0){
+        versionCheck = true;
+        while(distanceI > 20.0){
+          straight();
+          disCheck();
+        }
+      }else if(distanceL > 20.0){
+        versionCheck = true;
+        while(distanceI > 20.0){
+          straight();
+          disCheck();
+        }
+        turnLeft();
+      }else if(distanceR > 20.0){
+        versionCheck = true;
+        while(distanceI > 20.0){
+          straight();
+          disCheck();
+        }
+        turnRight();
+      }
+    }else{
+      if(distanceI <= 20.0){
+        if(distanceL <= 20.0 && turnCheck != RIGHT){
+          turnCheck = RIGHT;
+          turnRight();
+        }else if(distanceR <= 20.0 && turnCheck != LEFT){
+          turnCheck = LEFT;
+          turnLeft();
+        }else{
+          if(turnCheck == RIGHT){
+            turnRight();
+            delay(100);
+            turnRight();
+            escape = true;
+            escapeVersion = RIGHT;
+          }else{
+            turnLeft();
+            delay(100);
+            turnLeft();
+            escape = true;
+            escapeVersion = LEFT;
+          }
+        }
+      }else{
+        straight();
+      }
+    }
+  }else if(escape == true){
+    switch(escapeVersion){
+      case LEFT:
+        while(distanceL <= 20.0){
+          straight();
+          disCheck();
+        }
+        break;
+      case RIGHT:
+        while(distanceR <= 20.0){
+          straight();
+          disCheck();
+        }
+        break;
+    }
   }
 }
 
