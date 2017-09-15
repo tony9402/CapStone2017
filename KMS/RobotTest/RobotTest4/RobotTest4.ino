@@ -1,5 +1,5 @@
 #define LDC 11
-#define RDC 13
+#define RDC 10
 #define LTURN 7
 #define RTURN 9
 #define TRIG 4
@@ -77,8 +77,8 @@ void STOP()
 
 void GO()
 {
-  digitalWrite(LDC,LOW);
-  digitalWrite(RDC,LOW);
+  analogWrite(LDC,150);
+  analogWrite(RDC,130);
   digitalWrite(LTURN,LOW);
   digitalWrite(RTURN,LOW);
   analogWrite(5,10);
