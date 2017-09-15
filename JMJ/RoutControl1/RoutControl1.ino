@@ -1,7 +1,7 @@
 
 int Ldc=11;
 int Lturn=7;
-int Rdc=13;
+int Rdc=10;
 int Rturn=9;
 int echoL_pin=6;
 int trigL_pin=4;
@@ -81,8 +81,8 @@ void Stop(){
 }
 
 void straight(){
-  digitalWrite(Ldc,LOW);
-  digitalWrite(Rdc,LOW);
+  analogWrite(Ldc,150);
+  analogWrite(Rdc,150);
   digitalWrite(Lturn,LOW);
   digitalWrite(Rturn,LOW);
 }
@@ -168,7 +168,7 @@ void caseFTL(){
 void disCheck(){
   digitalWrite(trigL_pin,HIGH);
 
-  delay(10);
+  delayMicroseconds(2);
   
   digitalWrite(trigL_pin,LOW);
   
