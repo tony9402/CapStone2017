@@ -2,10 +2,12 @@
 #define Lturn 7
 #define Rdc 10
 #define Rturn 9
-#define trig_pin 4
+#define trig_pinI 4
+#define trig_pinR 5
+#define trig_pinL 6
 #define echoI_pin 2
 #define echoR_pin 3
-#define echoL_pin 6
+#define echoL_pin 8
    
 void straight();
 void turnLeft();
@@ -20,7 +22,9 @@ void setup() {
   pinMode(Rturn,OUTPUT);
   pinMode(Ldc,OUTPUT);
   pinMode(Rdc,OUTPUT);
-  pinMode(trig_pin,OUTPUT);
+  pinMode(trig_pinI,OUTPUT);
+  pinMode(trig_pinR,OUTPUT);
+  pinMode(trig_pinL,OUTPUT);
   pinMode(echoI_pin,INPUT);
   pinMode(echoR_pin,INPUT);
   pinMode(echoL_pin,INPUT);
@@ -29,25 +33,34 @@ void setup() {
 
 void loop() {
   disCheck();
-  if(distanceI <= 20.0 && distanceL <= 20.0 && !(distanceR <= 20.0)){
-    turnRight();
-  }else if(distanceI <= 20.0 && distanceR <= 20.0 && !(distanceL <= 20)){
-    turnLeft();
-  }else if(!(distanceI <= 20.0)){
+  if(distanceI <= 20.0){
+    char num = rand() % 2;
+    switch(num)
+    {
+      case 0:
+      turnRight();
+        break;
+      case 1:
+      turnLeft();
+       break;
+    }
+  }else{
     straight();
   }
 }
 
 void disCheck(){
   float durationI, durationR, durationL;
-  digitalWrite(trig_pin,LOW);
+  digitalWrite(trig_pinI,LOW);
+  digitalWrite(trig_pinL,LOW);
+  digitalWrite(trig_pinR,LOW);
   
   digitalWrite(echoI_pin,LOW);
   delayMicroseconds(2);
-  digitalWrite(trig_pin,HIGH);
+  digitalWrite(trig_pinI,HIGH);
   delayMicroseconds(10);
-  digitalWrite(trig_pin,LOW);
-  durationI = pulseIn(echoI_pin,HIGH,60000UL);
+  digitalWrite(trig_pinI,LOW);
+  durationI = pulseIn(echoI_pin,HIGH);
   distanceI = durationI / 2.0 / 29.0;
   Serial.print("I : ");
   Serial.print(distanceI);
@@ -55,10 +68,10 @@ void disCheck(){
   
   digitalWrite(echoR_pin,LOW);
   delayMicroseconds(2);
-  digitalWrite(trig_pin,HIGH);
+  digitalWrite(trig_pinR,HIGH);
   delayMicroseconds(10);
-  digitalWrite(trig_pin,LOW);
-  durationR = pulseIn(echoR_pin, HIGH,60000UL);
+  digitalWrite(trig_pinR,LOW);
+  durationR = pulseIn(echoR_pin, HIGH);
   distanceR = durationR / 2.0 / 29.0;
   Serial.print("R : ");
   Serial.print(distanceR);
@@ -66,15 +79,14 @@ void disCheck(){
 
   digitalWrite(echoL_pin,LOW);
   delayMicroseconds(2);
-  digitalWrite(trig_pin,HIGH);
+  digitalWrite(trig_pinL,HIGH);
   delayMicroseconds(10);
-  digitalWrite(trig_pin,LOW);
-  durationL = pulseIn(echoL_pin, HIGH,60000UL);
+  digitalWrite(trig_pinL,LOW);
+  durationL = pulseIn(echoL_pin, HIGH);
   distanceL = durationL / 2.0 / 29.0;
   Serial.print("L : ");
   Serial.print(distanceL);
   Serial.println();
-  delay(1000);
   return;
 }
 
