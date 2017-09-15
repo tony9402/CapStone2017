@@ -38,13 +38,13 @@ void loop() {
 }
 void disCheck(){
   float durationI, durationR, durationL;
-  digitalWrite(trig_pin,LOW);
+  digitalWrite(trig_pinI,LOW);
   
   digitalWrite(echoI_pin,LOW);
   delayMicroseconds(2);
-  digitalWrite(trig_pin,HIGH);
+  digitalWrite(trig_pinI,HIGH);
   delayMicroseconds(10);
-  digitalWrite(trig_pin,LOW);
+  digitalWrite(trig_pinI,LOW);
   durationI = pulseIn(echoI_pin,HIGH,60000UL);
   distanceI = durationI / 2.0 / 29.0;
   Serial.print("I : ");
@@ -53,9 +53,9 @@ void disCheck(){
   
   digitalWrite(echoR_pin,LOW);
   delayMicroseconds(2);
-  digitalWrite(trig_pin,HIGH);
+  digitalWrite(trig_pinR,HIGH);
   delayMicroseconds(10);
-  digitalWrite(trig_pin,LOW);
+  digitalWrite(trig_pinR,LOW);
   durationR = pulseIn(echoR_pin, HIGH,60000UL);
   distanceR = durationR / 2.0 / 29.0;
   Serial.print("R : ");
@@ -64,9 +64,9 @@ void disCheck(){
 
   digitalWrite(echoL_pin,LOW);
   delayMicroseconds(2);
-  digitalWrite(trig_pin,HIGH);
+  digitalWrite(trig_pinL,HIGH);
   delayMicroseconds(10);
-  digitalWrite(trig_pin,LOW);
+  digitalWrite(trig_pinL,LOW);
   durationL = pulseIn(echoL_pin, HIGH,60000UL);
   distanceL = durationL / 2.0 / 29.0;
   Serial.print("L : ");
