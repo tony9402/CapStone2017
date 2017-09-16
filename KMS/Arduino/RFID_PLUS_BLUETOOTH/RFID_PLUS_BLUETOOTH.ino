@@ -35,7 +35,7 @@ void loop()
     if(_4ByteNum != 0){
       BT.write(mfrc.uid.uidByte,4);
     }
-    delay(3000);
+    delay(2000);
 }
 
 
