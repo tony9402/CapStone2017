@@ -44,7 +44,7 @@ void loop() {
       if(distanceI<=10 && distanceL<=10){
         Stop();
         turnRight();
-        continue;
+        break;
       }
       else{
         delay(1000);
@@ -53,6 +53,7 @@ void loop() {
     }
     
     else if(distanceI<=10 && distanceR<=10){
+      Stop();
       turnLeft();
       disCheck();
       straight();
@@ -60,7 +61,7 @@ void loop() {
       if(distanceI<=10 && distanceR<=10){
         Stop();
         turnLeft();
-        continue;
+        break;
       }
       
       else{
@@ -119,7 +120,7 @@ void caseFTR(){
   while(1){
     disCheck();
     
-    if(distanceI<=10 && distanceL>=10 && distanceR>=10){
+    if(distanceI<=10 && distanceL>=10 ){
       Stop();
       turnLeft();
       delay(300);
@@ -132,6 +133,7 @@ void caseFTR(){
       Stop();
       turnRight();
       delay(300);
+      //탈출해보자
       straight();
       delay(1000);
       caseFTR();
@@ -145,7 +147,7 @@ void caseFTL(){
   while(1){
     disCheck();
     
-    if(distanceI<=10 && distanceL>=10 && distanceR>=10){
+    if(distanceI<=10 && distanceR>=10){
       Stop();
       turnRight();
       delay(300);

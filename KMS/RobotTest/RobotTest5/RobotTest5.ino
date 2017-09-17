@@ -44,6 +44,7 @@ void loop() {
           straight();
           disCheck();
         }
+        turnLeft();
       }else if(distanceL > 20.0){
         versionCheck = true;
         while(distanceI > 20.0){
@@ -93,6 +94,7 @@ void loop() {
           straight();
           disCheck();
         }
+        
         break;
       case RIGHT:
         while(distanceR <= 20.0){

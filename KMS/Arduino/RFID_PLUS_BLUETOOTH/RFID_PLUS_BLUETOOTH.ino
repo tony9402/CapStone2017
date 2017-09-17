@@ -1,3 +1,13 @@
+/* SDA pin10
+ * SCK pin13
+ * MOSI pin 11
+ * MISO pin 12
+ * IRQ N.C
+ * GND GND
+ * RST 9
+ * 3.3V 3.3V
+ */
+
 #include<SoftwareSerial.h>
 #include<MFRC522.h>
 #include<SPI.h>
@@ -35,7 +45,7 @@ void loop()
     if(_4ByteNum != 0){
       BT.write(mfrc.uid.uidByte,4);
     }
-    delay(3000);
+    delay(2000);
 }
 
 
