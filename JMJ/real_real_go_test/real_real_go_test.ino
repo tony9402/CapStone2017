@@ -1,24 +1,23 @@
-int Ldc=11;
-int Lturn=7;
-int Rdc=10;
-int Rturn=9;
-
+#define Ldc 11
+#define Lturn 7
+#define Rdc 10
+#define Rturn 9
+void straight();
+void turnLeft();
+void turnRight();
+void Stop();
 void setup() {
-  // put your setup code here, to run once:
   pinMode(Lturn,OUTPUT);
   pinMode(Rturn,OUTPUT);
   pinMode(Ldc,OUTPUT);
-  
   pinMode(Rdc,OUTPUT);
+  // put your setup code here, to run once:
+
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-//turnRight();
-//turnLeft();
-straight();
-delay(1000);
-//Stop();
+  straight();
+
 }
 void Stop(){
   digitalWrite(Ldc,HIGH);
@@ -29,8 +28,8 @@ void Stop(){
 void straight(){
   analogWrite(Ldc,150);
   analogWrite(Rdc,140);
-  digitalWrite(Lturn,HIGH);
-  digitalWrite(Rturn,HIGH);
+  digitalWrite(Lturn,LOW);
+  digitalWrite(Rturn,LOW);
   return;
 }
 
