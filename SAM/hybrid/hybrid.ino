@@ -12,8 +12,8 @@
 #include<MFRC522.h>
 #include<SPI.h>
 
-#define Rx 3
-#define Tx 2
+#define Rx 3 
+#define Tx 2 
 #define RST_PIN 9
 #define SS_PIN 10
 
@@ -56,17 +56,23 @@ void loop()
     
 }
 
- if(mfrc.uid.uidByte[0]==0xB6 && mfrc.uid.uidByte[1]==0xDF && mfrc.uid.uidByte[2]==0x05 && mfrc.uid.uidByte[3]==0x85)//내가 가지고 있는 RFID의 uid임 
+ if(mfrc.uid.uidByte[0]==0xB6 && mfrc.uid.uidByte[1]==0xDF && mfrc.uid.uidByte[2]==0x05 && mfrc.uid.uidByte[3]==0x85)
+ //내가 가지고 있는 RFID의 uid 
  {
-    Serial.println("<< OK !!! >>  Card of Door!");//시리얼 모니터에 출력하는 용도 카드 맞는지 확인용(작업시)
+    Serial.println("<< OK !!! >>  Card of Door!");
+    //시리얼 모니터에 출력하는 용도 카드 맞는지 확인용(작업시)
 
-    if(digitalRead(8)==LOW)//만약 8번핀에 신호가 없다면
+    if(digitalRead(8)==LOW)
+    //만약 8번핀에 신호가 없다면
     {
-      digitalWrite(8,HIGH);//8번핀에 신호를 준다
+      digitalWrite(8,HIGH);
+      //8번핀에 신호를 준다
     }
-    if(digitalRead(8)==HIGH)//만약 8번핀에 신호가 있다면
+    if(digitalRead(8)==HIGH)
+    //만약 8번핀에 신호가 있다면
     {
-      digitalWrite(8,LOW);//8번핀에 신호를 없앤다
+      digitalWrite(8,LOW);
+      //8번핀에 신호를 없앤다
     }
     
     delay(1000);
