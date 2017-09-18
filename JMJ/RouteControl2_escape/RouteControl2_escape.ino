@@ -17,6 +17,7 @@ void disCheck();
 void Stop();
 float distanceI, distanceR, distanceL;
 bool loopescape = false;
+char count = 0;
 
 void setup() {
   pinMode(Lturn,OUTPUT);
@@ -34,9 +35,8 @@ void setup() {
 }
 
 void loop() {
- int i=0;
  while(1){
-  if(i==2){
+  if(count==2){
     while(1){
       straight();
       disCheck();
@@ -58,7 +58,7 @@ void loop() {
     
     
     }
-    }
+    
   }
   while(1){
     disCheck();
@@ -79,7 +79,7 @@ void loop() {
         delay(1000);
         caseFTR();
         if(loopescape == true){
-          i++;
+          count++;
           loopescape = false;
           return;
         }
@@ -113,7 +113,7 @@ void loop() {
     }
   }
 }
-
+}
 void disCheck(){
   float durationI, durationR, durationL;
   digitalWrite(trig_pinI,LOW);
@@ -209,7 +209,7 @@ void caseFTR(){
       disCheck();
       if(distanceI<=25){
         turnLeft();
-        i++;
+        count++;
         loopescape = true;
         return;
       }
@@ -222,7 +222,7 @@ void caseFTR(){
     
     else if(distanceI<=25 && distanceL<=25){
       Stop();
-      i++;
+      count++;
       turnRight();
       delay(300);
       //탈출해보자
@@ -275,7 +275,7 @@ void caseFTL(){
 
       if(distanceI<=25){
         turnRight();
-        i++;
+        count++;
         loopescape = true;
         return;
       }
@@ -323,3 +323,4 @@ void caseFTL(){
     }
   }
 }
+
