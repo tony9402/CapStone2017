@@ -8,12 +8,9 @@
 #define echoI_pin 2
 #define echoR_pin 3
 #define echoL_pin 8
-
-void straight();
-void turnLeft();
-void turnRight();
-void disCheck();
-void Stop();
+#define LEFT 1
+#define RIGHT 2
+#define tLT 400
 
 float distanceI, distanceR, distanceL;
 
@@ -22,23 +19,53 @@ void setup() {
   pinMode(Rturn,OUTPUT);
   pinMode(Ldc,OUTPUT);
   pinMode(Rdc,OUTPUT);
-  pinMode(trig_pinI,OUTPUT);
+  pinMode(trig_pinI,OUTPUT);  
   pinMode(trig_pinR,OUTPUT);
   pinMode(trig_pinL,OUTPUT);
   pinMode(echoI_pin,INPUT);
   pinMode(echoR_pin,INPUT);
   pinMode(echoL_pin,INPUT);
   Serial.begin(9600);
-
 }
+
+char turnCheck;
+char turnRightCheck = 0;
+char turnLeftCheck = 0;
+bool LTL = false;
+bool LTR = false;
 
 void loop() {
-  // put your main code here, to run repeatedly:
-
+   disCheck();
+   if(distanceI <= 20.0 && distanceI != 0){
+    turnLeft(tLT);
+   }else{
+    if(distanceR <= 20.0 && distanceR != 0){
+      
+    }
+   }
 }
+
+void littleTurnLeft(){
+  analogWrite(Ldc,150);
+  analogWrite(Rdc,100);
+  digitalWrite(Lturn,LOW);
+  digitalWrite(Rturn,LOW);
+  return;
+}
+
+void littleTurnRight(){
+  analogWrite(Ldc,110);
+  analogWrite(Rdc,140);
+  digitalWrite(Lturn,LOW);
+  digitalWrite(Rturn,LOW);
+  return;
+}
+
 void disCheck(){
   float durationI, durationR, durationL;
   digitalWrite(trig_pinI,LOW);
+  digitalWrite(trig_pinR,LOW);
+  digitalWrite(trig_pinL,LOW);
   
   digitalWrite(echoI_pin,LOW);
   delayMicroseconds(2);
@@ -72,9 +99,17 @@ void disCheck(){
   Serial.print("L : ");
   Serial.print(distanceL);
   Serial.println();
-  delay(1000);
   return;
 }
+
+void Uturn(){
+  while(distanceI > 20.0 || distanceI == 0){
+    turnRight();
+    disCheck();
+  }
+  return;
+}
+
 void Stop(){
   digitalWrite(Ldc,HIGH);
   digitalWrite(Rdc,HIGH);
@@ -83,18 +118,19 @@ void Stop(){
 
 void straight(){
   analogWrite(Ldc,150);
-  analogWrite(Rdc,150);
+  analogWrite(Rdc,140);
   digitalWrite(Lturn,LOW);
   digitalWrite(Rturn,LOW);
   return;
 }
 
-void turnLeft(){
-  digitalWrite(Ldc,LOW);
-  digitalWrite(Rdc,LOW);
+void turnLeft(int Delay){
+  //delay 400
+  analogWrite(Ldc,50);
+  analogWrite(Rdc,40);
   digitalWrite(Lturn,HIGH);
   digitalWrite(Rturn,LOW);
-  delay(350);
+  delay(Delay);
   digitalWrite(Ldc,LOW);
   digitalWrite(Rdc,LOW);
   digitalWrite(Lturn,LOW);
@@ -103,3 +139,18 @@ void turnLeft(){
   Stop();
   return;
 }
+
+void turnRight(){
+  analogWrite(Ldc,50);
+  analogWrite(Rdc,40);
+  digitalWrite(Lturn,LOW);
+  digitalWrite(Rturn,HIGH);
+  delay(400);
+  digitalWrite(Ldc,LOW);
+  digitalWrite(Rdc,LOW);
+  digitalWrite(Lturn,HIGH);
+  digitalWrite(Rturn,LOW);
+  delay(50);
+  Stop();
+}
+
