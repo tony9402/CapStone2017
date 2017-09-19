@@ -145,7 +145,7 @@ void turnLeft(){
   analogWrite(Rdc,40);
   digitalWrite(Lturn,HIGH);
   digitalWrite(Rturn,LOW);
-  delay(415);
+  delay(430);
   digitalWrite(Ldc,LOW);
   digitalWrite(Rdc,LOW);
   digitalWrite(Lturn,LOW);
@@ -160,7 +160,7 @@ void turnRight(){
   analogWrite(Rdc,40);
   digitalWrite(Lturn,LOW);
   digitalWrite(Rturn,HIGH);
-  delay(422);
+  delay(450);
   digitalWrite(Ldc,LOW);
   digitalWrite(Rdc,LOW);
   digitalWrite(Lturn,HIGH);

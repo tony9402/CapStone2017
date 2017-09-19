@@ -17,6 +17,12 @@ void setup() {
 
 void loop() {
   straight();
+  delay(1000);
+  turnLeft();
+  turnRight();
+  Stop();
+  delay(1000);
+ 
 
 }
 void Stop(){
