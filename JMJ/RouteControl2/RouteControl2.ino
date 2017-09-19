@@ -145,7 +145,11 @@ void turnLeft(){
   analogWrite(Rdc,40);
   digitalWrite(Lturn,HIGH);
   digitalWrite(Rturn,LOW);
+<<<<<<< HEAD
   delay(605);
+=======
+  delay(430);
+>>>>>>> 41dd4b1e51dd6cb71719f19d7d4e61d17b13fdca
   digitalWrite(Ldc,LOW);
   digitalWrite(Rdc,LOW);
   digitalWrite(Lturn,LOW);
@@ -160,7 +164,11 @@ void turnRight(){
   analogWrite(Rdc,40);
   digitalWrite(Lturn,LOW);
   digitalWrite(Rturn,HIGH);
+<<<<<<< HEAD
   delay(700);
+=======
+  delay(450);
+>>>>>>> 41dd4b1e51dd6cb71719f19d7d4e61d17b13fdca
   digitalWrite(Ldc,LOW);
   digitalWrite(Rdc,LOW);
   digitalWrite(Lturn,HIGH);

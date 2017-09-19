@@ -16,7 +16,18 @@ void setup() {
 }
 
 void loop() {
+<<<<<<< HEAD
 straight();
+=======
+  straight();
+  delay(1000);
+  turnLeft();
+  turnRight();
+  Stop();
+  delay(1000);
+ 
+
+>>>>>>> 41dd4b1e51dd6cb71719f19d7d4e61d17b13fdca
 }
 void Stop(){
   digitalWrite(Ldc,HIGH);
