@@ -16,8 +16,7 @@ void setup() {
 }
 
 void loop() {
-  straight();
-
+straight();
 }
 void Stop(){
   digitalWrite(Ldc,HIGH);
@@ -26,8 +25,8 @@ void Stop(){
 }
 
 void straight(){
-  analogWrite(Ldc,150);
-  analogWrite(Rdc,140);
+  analogWrite(Ldc,50);
+  analogWrite(Rdc,40);
   digitalWrite(Lturn,LOW);
   digitalWrite(Rturn,LOW);
   return;
@@ -38,7 +37,7 @@ void turnLeft(){
   analogWrite(Rdc,40);
   digitalWrite(Lturn,HIGH);
   digitalWrite(Rturn,LOW);
-  delay(400);
+  delay(500);
   digitalWrite(Ldc,LOW);
   digitalWrite(Rdc,LOW);
   digitalWrite(Lturn,LOW);

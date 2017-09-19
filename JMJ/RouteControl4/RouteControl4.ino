@@ -39,12 +39,12 @@ void loop() {
     disCheck();
     straight();
     
-    if ((distanceI<=30.0 && distanceL<=30.0 && (distanceI * distanceL) != 0)|| distanceI<=30.0){
+    if ((distanceI<=27.0 && distanceL<=27.0 && (distanceI * distanceL) != 0)|| distanceI<=27.0){
       turnRight();
       disCheck();
       
       
-      if(distanceI<=30.0 && distanceL<=30.0 && (distanceI * distanceL) != 0){
+      if(distanceI<=23.0 && distanceL<=23.0 && (distanceI * distanceL) != 0){
         Stop();
         turnRight();
         break;
@@ -60,13 +60,13 @@ void loop() {
       }
     }
     
-    else if(distanceI<=30.0 && distanceR<=30.0 && (distanceI*distanceR) != 0){
+    else if(distanceI<=27.0 && distanceR<=27.0 && (distanceI*distanceR) != 0){
       Stop();
       turnLeft();
       disCheck();
       
       
-      if(distanceI<=30.0 && distanceR<=30.0 && (distanceI*distanceR )!= 0){
+      if(distanceI<=23.0 && distanceR<=23.0 && (distanceI*distanceR )!= 0){
         turnLeft();
         break;
       }
@@ -134,7 +134,7 @@ void Stop(){
 
 void straight(){
   analogWrite(Ldc,100);
-  analogWrite(Rdc,90);
+  analogWrite(Rdc,100);
   digitalWrite(Lturn,LOW);
   digitalWrite(Rturn,LOW);
   return;
@@ -176,12 +176,12 @@ void caseFTR(){
   while(1){
     disCheck();
     straight();
-    if(distanceI<=30.0 && distanceL>=30.0 &&distanceI != 0 || distanceL == 0){
+    if(distanceI<=27.0 && distanceL>=27.0 &&distanceI != 0 || distanceL == 0){
       Stop();
       turnLeft();
       delay(300);
       disCheck();
-      if(distanceI<=30.0){
+      if(distanceI<=27.0){
         turnLeft();
         loopescape = true;
         return;
@@ -193,7 +193,7 @@ void caseFTR(){
       }
     }
     
-    else if(distanceI<=30.0 && distanceL<=30.0 && distanceI * distanceL != 0){
+    else if(distanceI<=23.0 && distanceL<=23.0 && distanceI * distanceL != 0){
       Stop();
       turnRight();
       delay(300);
@@ -202,33 +202,6 @@ void caseFTR(){
       delay(1000);
       caseFTR();
     }
-    else if(distanceR<=10 && distanceI>40 || distanceI==0 && distanceR != 0){
-      analogWrite(Ldc,150);
-      analogWrite(Rdc,140);
-      digitalWrite(Lturn,LOW);
-      digitalWrite(Rturn,HIGH);
-      delay(400);
-      digitalWrite(Ldc,LOW);
-      digitalWrite(Rdc,LOW);
-      digitalWrite(Lturn,HIGH);
-      digitalWrite(Rturn,LOW);
-      delay(50);
-      Stop();
-    }
-   else if(distanceL<=10 && distanceI>40 && distanceI==0 && distanceL != 0){
-    //turnRight Little
-    analogWrite(Ldc,150);
-    analogWrite(Rdc,140);
-    digitalWrite(Lturn,LOW);
-    digitalWrite(Rturn,HIGH);
-    delay(400);
-    digitalWrite(Ldc,LOW);
-    digitalWrite(Rdc,LOW);
-    digitalWrite(Lturn,HIGH);
-    digitalWrite(Rturn,LOW);
-    delay(50);
-    Stop();
-   }
   }
 }
 
@@ -239,13 +212,13 @@ void caseFTL(){
   while(1){
     disCheck();
     straight();
-    if(distanceI<=30.0 && distanceR>=30.0 && distanceI != 0 || distanceR == 0){
+    if(distanceI<=23.0 && distanceR>=23.0 && distanceI != 0 || distanceR == 0){
       Stop();
       turnRight();
       delay(300);
       disCheck();
 
-      if(distanceI<=30.0){
+      if(distanceI<=23.0){
         turnRight();
         loopescape = true;
         return;
@@ -257,7 +230,7 @@ void caseFTL(){
       }
     }
     
-    else if(distanceI<=30.0 && distanceR<=30.0 && distanceI * distanceR != 0){
+    else if(distanceI<=23.0 && distanceR<=23.0 && distanceI * distanceR != 0){
       Stop();
       turnLeft();
       delay(300);
@@ -265,32 +238,7 @@ void caseFTL(){
       delay(1000);
       caseFTL();
     }
-   else if(distanceL<=30.0 && distanceI>40 || distanceI==0 && distanceL != 0){
-    //turnRight Little
-    analogWrite(Ldc,150);
-    analogWrite(Rdc,140);
-    digitalWrite(Lturn,LOW);
-    digitalWrite(Rturn,HIGH);
-    delay(400);
-    digitalWrite(Ldc,LOW);
-    digitalWrite(Rdc,LOW);
-    digitalWrite(Lturn,HIGH);
-    digitalWrite(Rturn,LOW);
-    delay(50);
-    Stop();
-   }
-    else if(distanceR<=30.0 && distanceI>40 || distanceI==0 && distanceR != 0){
-      analogWrite(Ldc,150);
-      analogWrite(Rdc,140);
-      digitalWrite(Lturn,LOW);
-      digitalWrite(Rturn,HIGH);
-      delay(400);
-      digitalWrite(Ldc,LOW);
-      digitalWrite(Rdc,LOW);
-      digitalWrite(Lturn,HIGH);
-      digitalWrite(Rturn,LOW);
-      delay(50);
-      Stop();
-    }
   }
+    
+  
 }
