@@ -16,8 +16,18 @@ void setup() {
 }
 
 void loop() {
+<<<<<<< HEAD
+straight();
+=======
   straight();
+  delay(1000);
+  turnLeft();
+  turnRight();
+  Stop();
+  delay(1000);
+ 
 
+>>>>>>> 41dd4b1e51dd6cb71719f19d7d4e61d17b13fdca
 }
 void Stop(){
   digitalWrite(Ldc,HIGH);
@@ -26,8 +36,8 @@ void Stop(){
 }
 
 void straight(){
-  analogWrite(Ldc,150);
-  analogWrite(Rdc,140);
+  analogWrite(Ldc,50);
+  analogWrite(Rdc,40);
   digitalWrite(Lturn,LOW);
   digitalWrite(Rturn,LOW);
   return;
@@ -38,7 +48,7 @@ void turnLeft(){
   analogWrite(Rdc,40);
   digitalWrite(Lturn,HIGH);
   digitalWrite(Rturn,LOW);
-  delay(400);
+  delay(500);
   digitalWrite(Ldc,LOW);
   digitalWrite(Rdc,LOW);
   digitalWrite(Lturn,LOW);

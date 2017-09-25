@@ -54,7 +54,7 @@ void loop()
     }
     Serial.println();
     
-}
+    }
 
  if(mfrc.uid.uidByte[0]==0xB6 && mfrc.uid.uidByte[1]==0xDF && mfrc.uid.uidByte[2]==0x05 && mfrc.uid.uidByte[3]==0x85)
  //내가 가지고 있는 RFID의 uid 
@@ -76,6 +76,9 @@ void loop()
     }
     
     delay(1000);
+ }
+ if(_4ByteNum != 0){
+      BT.write(mfrc.uid.uidByte,4);
  }
 delay(2000);
 }
