@@ -8,9 +8,9 @@
  * 3.3V 3.3V
  */
 
-#include<SoftwareSerial.h>
-#include<MFRC522.h>
-#include<SPI.h>
+#include<SoftwareSerial.h> //블루투스 모듈을 이용하기 위한 헤더
+#include<MFRC522.h> //RFID를 이용하기 위한 헤더
+#include<SPI.h> // RFID를 이용하기 위한 해더
 
 #define Rx 3 
 #define Tx 2 
@@ -21,12 +21,12 @@
 SoftwareSerial BT(Tx,Rx);
 MFRC522 mfrc(SS_PIN,RST_PIN);
 
-unsigned int _4ByteNum = 0;
+unsigned int _4ByteNum = 0; //변수 선언
 
 void setup()
 {
- Serial.begin(9600);
- BT.begin(9600);
+ Serial.begin(9600); //시리얼 모니터의 통신 속도를 9600으로 설정 
+ BT.begin(9600); //블루투스 모듈의 통신 속도를 9600으로 설정
  SPI.begin();
  mfrc.PCD_Init(); 
 }
