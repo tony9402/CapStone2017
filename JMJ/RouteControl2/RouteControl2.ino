@@ -1,20 +1,20 @@
-#define Ldc 11
-#define Lturn 7
-#define Rdc 10
-#define Rturn 9
-#define trig_pinI 4
-#define trig_pinR 5
-#define trig_pinL 6
-#define echoI_pin 2
-#define echoR_pin 3
-#define echoL_pin 8
+#define Ldc 11//왼쪽모터able
+#define Lturn 7//왼쪽ccw
+#define Rdc 10//오른쪽모터able
+#define Rturn 9//오른쪽ccw
+#define trig_pinI 4//앞쪽 초음파센서
+#define trig_pinR 5//오른쪽 초음파센서
+#define trig_pinL 6//왼쪽 초음파센서
+#define echoI_pin 2//앞쪽 초음파센서
+#define echoR_pin 3//오른쪽 초음파센서
+#define echoL_pin 8//왼쪽 초음파센서
 void caseFTR();
 void caseFTL();
-void straight();
-void turnLeft();
-void turnRight();
-void disCheck();
-void Stop();
+void straight();//직진 동작
+void turnLeft();//왼쪽 회전 동작
+void turnRight();//오른쪽 회전 동작
+void disCheck();//거리 측정
+void Stop();//정지 동작
 
 float distanceI, distanceR, distanceL;
 bool loopescape = false;
@@ -38,12 +38,12 @@ void loop() {
   while(1){
     disCheck();
     straight();
-    
+    //처음에 직진
     if ((distanceI<=25 && distanceL<=25 && (distanceI * distanceL) != 0)|| distanceI<=25){
-      turnRight();
+      turnRight(); //처음으로 앞과 왼쪽이 막히면 우회전
       disCheck();
       
-      
+     
       if(distanceI<=25 && distanceL<=25 && (distanceI * distanceL) != 0){
         Stop();
         turnRight();
@@ -62,7 +62,7 @@ void loop() {
     
     else if(distanceI<=25 && distanceR<=25 && (distanceI*distanceR) != 0){
       Stop();
-      turnLeft();
+      turnLeft();//처음으로 오른쪽과 앞이 막히면 좌회전
       disCheck();
       
       
