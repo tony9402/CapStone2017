@@ -8,7 +8,7 @@
 #define echoI_pin 2//앞쪽 초음파센서
 #define echoR_pin 3//오른쪽 초음파센서
 #define echoL_pin 8//왼쪽 초음파센서
-void caseFTR();
+void caseFTR();//함수
 void caseFTL();
 void straight();//직진 동작
 void turnLeft();//왼쪽 회전 동작
@@ -155,11 +155,9 @@ void turnLeft(){
   analogWrite(Rdc,40);
   digitalWrite(Lturn,HIGH);
   digitalWrite(Rturn,LOW);
-<<<<<<< HEAD
+
   delay(605);
-=======
-  delay(430);
->>>>>>> 41dd4b1e51dd6cb71719f19d7d4e61d17b13fdca
+
   digitalWrite(Ldc,LOW);
   digitalWrite(Rdc,LOW);
   digitalWrite(Lturn,LOW);
@@ -174,11 +172,9 @@ void turnRight(){
   analogWrite(Rdc,40);
   digitalWrite(Lturn,LOW);
   digitalWrite(Rturn,HIGH);
-<<<<<<< HEAD
+
   delay(700);
-=======
-  delay(450);
->>>>>>> 41dd4b1e51dd6cb71719f19d7d4e61d17b13fdca
+
   digitalWrite(Ldc,LOW);
   digitalWrite(Rdc,LOW);
   digitalWrite(Lturn,HIGH);
@@ -215,7 +211,7 @@ void caseFTR(){
       Stop();
       turnRight();
       delay(300);
-      //탈출해보자
+
       straight();
       delay(1000);
       caseFTR();
