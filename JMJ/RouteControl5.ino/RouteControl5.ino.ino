@@ -1,4 +1,4 @@
-타자연습#define Ldc 11
+#define Ldc 11
 #define Lturn 7
 #define Rdc 10
 #define Rturn 9
