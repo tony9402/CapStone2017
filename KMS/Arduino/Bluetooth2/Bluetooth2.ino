@@ -35,10 +35,10 @@ unsigned int _4ByteNum = 0;
 
 void setup()
 {
- Serial.begin(9600);
- BT.begin(9600);
+ Serial.begin(9600); //Serial통신속도를 9600으로 설정
+ BT.begin(9600); //Bluetooth통신속도를 9600으로 설정
  SPI.begin();
- mfrc.PCD_Init(); 
+ mfrc.PCD_Init(); //MFRC 초기화
 }
 
 void loop()
